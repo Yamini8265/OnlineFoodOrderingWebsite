@@ -20,7 +20,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
-@Data
+
 @Entity
 public class Restaurant {
 	 @Id
@@ -46,7 +46,7 @@ public class Restaurant {
 	    
 	    @JsonIgnore
 	    @OneToMany(mappedBy="restaurant",cascade=CascadeType.ALL,orphanRemoval = true)
-	    private List<Order> orders=new ArrayList<>();
+	    private List<Orders> orders=new ArrayList<>();
 	    
 	    private int numRating;
 
@@ -61,6 +61,39 @@ public class Restaurant {
 	    @JsonIgnore
 	    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL)
 	    private List<Food> foods=new ArrayList<>();
+	    
+	    
+	    
+	    
+
+		public Restaurant() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+		
+		
+		public Restaurant(Long id, User owner, String name, String description, String cuisineType, Address address,
+				ContactInformation contactInformation, String openingHours, List<Orders> orders, int numRating,
+				List<String> images, LocalDateTime registrationDate, boolean open, List<Food> foods) {
+			super();
+			this.id = id;
+			this.owner = owner;
+			this.name = name;
+			this.description = description;
+			this.cuisineType = cuisineType;
+			this.address = address;
+			this.contactInformation = contactInformation;
+			this.openingHours = openingHours;
+			this.orders = orders;
+			this.numRating = numRating;
+			this.images = images;
+			this.registrationDate = registrationDate;
+			this.open = open;
+			this.foods = foods;
+		}
+
+
 
 		public Long getId() {
 			return id;
@@ -126,11 +159,11 @@ public class Restaurant {
 			this.openingHours = openingHours;
 		}
 
-		public List<Order> getOrders() {
+		public List<Orders> getOrders() {
 			return orders;
 		}
 
-		public void setOrders(List<Order> orders) {
+		public void setOrders(List<Orders> orders) {
 			this.orders = orders;
 		}
 

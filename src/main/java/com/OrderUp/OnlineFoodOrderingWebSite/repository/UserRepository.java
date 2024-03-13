@@ -10,9 +10,9 @@ import com.OrderUp.OnlineFoodOrderingWebSite.Model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 
-	@Query("SELECT u FROM User u Where u.status='PENDING'")
-	public List<User> getPenddingRestaurantOwners();
-	
-	public User findByEmail(String username);
+//	@Query("SELECT u FROM User u Where u.status='PENDING'")
+//	public List<User> getPenddingRestaurantOwners();
+//	
+//	public User findByEmail(String username);
 
 }

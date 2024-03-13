@@ -18,9 +18,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class IngredientCategory {
 	
 	@Id
@@ -33,7 +30,59 @@ public class IngredientCategory {
 	private Restaurant restaurant;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
-	private List<IngredientsItem> ingredients= new ArrayList<>();
+//	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+//	private List<IngredientsItem> ingredients= new ArrayList<>();
 
+	public IngredientCategory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public IngredientCategory(Long id, String name, Restaurant restaurant
+//			, List<IngredientsItem> ingredients
+			)
+			{
+		super();
+		this.id = id;
+		this.name = name;
+		this.restaurant = restaurant;
+//		this.ingredients = ingredients;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+//	public List<IngredientsItem> getIngredients() {
+//		return ingredients;
+//	}
+//
+//	public void setIngredients(List<IngredientsItem> ingredients) {
+//		this.ingredients = ingredients;
+//	}
+
+	
+	
+	
+	
 }

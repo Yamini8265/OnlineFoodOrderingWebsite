@@ -17,9 +17,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +30,60 @@ public class Cart {
 	private List<CartItem> items = new ArrayList<>();
 	
 	private Long total;
+	
+	
+	
+	
+
+	public Cart() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Cart(Long id, User customer, List<CartItem> items, Long total) {
+		super();
+		this.id = id;
+		this.customer = customer;
+		this.items = items;
+		this.total = total;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
+	public List<CartItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<CartItem> items) {
+		this.items = items;
+	}
+
+	public Long getTotal() {
+		return total;
+	}
+
+	public void setTotal(Long total) {
+		this.total = total;
+	}
+	
+	
 
 }

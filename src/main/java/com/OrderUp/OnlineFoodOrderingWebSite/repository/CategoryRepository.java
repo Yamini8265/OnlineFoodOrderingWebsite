@@ -8,5 +8,5 @@ import com.OrderUp.OnlineFoodOrderingWebSite.Model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	public List<Category> findByRestaurantId(Long id);
+//	public List<Category> findByRestaurantId(Long id);
 }

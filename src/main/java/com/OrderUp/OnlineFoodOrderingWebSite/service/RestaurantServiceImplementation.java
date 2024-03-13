@@ -2,6 +2,7 @@ package com.OrderUp.OnlineFoodOrderingWebSite.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,44 +53,52 @@ public class RestaurantServiceImplementation implements RestaurantService {
 		
 	}
 	
-	
+	@Override
+	public Restaurant updateRestaurant(Long restaurantId, CreateRestaurantRequest updatedReq)
+			throws RestaurantException {
+		Restaurant restaurant = findRestaurantById(restaurantId);
+		if (restaurant.getCuisineType() != null) {
+			restaurant.setCuisineType(updatedReq.getCuisineType());
+		}
+		if (restaurant.getDescription() != null) {
+			restaurant.setDescription(updatedReq.getDescription());
+		}
+		return restaurantRepository.save(restaurant);
+	}
 	
 	@Override
-	public Restaurant updateRestaurant(Long restaurantId, CreateRestaurantRequest updatedRestaurant)
-			throws RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
+	public Restaurant findRestaurantById(Long restaurantId) throws RestaurantException {
+		Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
+		if (restaurant.isPresent()) {
+			return restaurant.get();
+		} else {
+			throw new RestaurantException("Restaurant with id " + restaurantId + "not found");
+		}
 	}
 
 	@Override
 	public void deleteRestaurant(Long restaurantId) throws RestaurantException {
-		// TODO Auto-generated method stub
-		
+		Restaurant restaurant = findRestaurantById(restaurantId);
+		if (restaurant != null) {
+			restaurantRepository.delete(restaurant);
+			return;
+		}
+		throw new RestaurantException("Restaurant with id " + restaurantId + " Not found");
+
 	}
 
 	@Override
 	public List<Restaurant> getAllRestaurant() {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findAll();
 	}
 
-	@Override
-	public List<Restaurant> searchRestaurant(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Restaurant findRestaurantById(Long id) throws RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Restaurant getRestaurantsByUserId(Long userId) throws RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
+		Restaurant restaurants=restaurantRepository.findByOwnerId(userId);
+		return restaurants;
 	}
+
 
 	@Override
 	public RestaurantDto addToFavorites(Long restaurantId, User user) throws RestaurantException {
@@ -99,6 +108,12 @@ public class RestaurantServiceImplementation implements RestaurantService {
 
 	@Override
 	public Restaurant updateRestaurantStatus(Long id) throws RestaurantException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Restaurant> searchRestaurant(String keyword) {
 		// TODO Auto-generated method stub
 		return null;
 	}

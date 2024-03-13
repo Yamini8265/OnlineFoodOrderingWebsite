@@ -9,5 +9,5 @@ import com.OrderUp.OnlineFoodOrderingWebSite.Model.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Long> {
 
-	 Optional<Cart> findByCustomer_Id(Long userId);
+//	 Optional<Cart> findByCustomer_Id(Long userId);
 }
